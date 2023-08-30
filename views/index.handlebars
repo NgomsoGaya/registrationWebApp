@@ -1,16 +1,14 @@
 <h1>Registration Web Application</h1>
 
 <form action="/regnumbers" method="POST">
-<div>
+<div class="input">
    <input type="text" name="reg" placeholder="enter a registration here">
-   <button>Add</button> 
-
-   {{!-- <span>{{regDisplay}}</span> --}}
+   <button>Add</button>
 </div>
 </form>
 
 <form action="">
-  <div>
+  <div class="radio">
    <input type="radio">
    <span>Cape Town</span>
    <input type="radio">
@@ -23,7 +21,7 @@
 </div>
 </form>
 
-<div>
+<div class="registration">
   {{#each regNumbers}}
   <tr>
     <td>

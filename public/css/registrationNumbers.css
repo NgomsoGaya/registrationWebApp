@@ -1,6 +1,25 @@
 .section{
     text-align: center;
     border: 2px solid black;
+    border-radius: 5px;
     padding: 10px;
     margin: 10px;
+}
+h1{
+    margin-bottom: 50px;
+}
+.input{
+    margin-bottom: 60px;
+}
+
+.radio{
+    margin-bottom: 50px;
+}
+
+.registration{
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: yellow;
+    margin-left: 35%;
+    margin-right: 35%;
 }
