@@ -1,0 +1,36 @@
+<h1>Registration Web Application</h1>
+
+<form action="/regnumbers" method="POST">
+<div>
+   <input type="text" name="reg" placeholder="enter a registration here">
+   <button>Add</button> 
+
+   {{!-- <span>{{regDisplay}}</span> --}}
+</div>
+</form>
+
+<form action="">
+  <div>
+   <input type="radio">
+   <span>Cape Town</span>
+   <input type="radio">
+   <span>Paarl</span>
+   <input type="radio">
+   <span>George</span>
+   <input type="radio">
+   <span>Stellenbosch</span>
+   <button>Show</button> 
+</div>
+</form>
+
+<div>
+  {{#each regNumbers}}
+  <tr>
+    <td>
+      <p>{{this}}</p>
+    </td>
+  </tr>
+  {{/each}}
+</div>
+
+<span></span>
