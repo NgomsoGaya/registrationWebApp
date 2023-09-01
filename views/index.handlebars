@@ -7,28 +7,41 @@
 </div>
 </form>
 
-<form action="">
+<form action="/filter" method="POST">
   <div class="radio">
-   <input type="radio">
+   <input type="radio" name="town" value="CA">
    <span>Cape Town</span>
-   <input type="radio">
+   <input type="radio" name="town" value="CJ">
    <span>Paarl</span>
-   <input type="radio">
+   <input type="radio" name="town" value="CAG">
    <span>George</span>
-   <input type="radio">
+   <input type="radio" name="town" value="CL">
    <span>Stellenbosch</span>
    <button>Show</button> 
 </div>
 </form>
 
+ 
+<div  class="registration-grid">
+{{#each regNumbers}}
 <div class="registration">
-  {{#each regNumbers}}
   <tr>
     <td>
-      <p>{{this}}</p>
+      <p>{{this.registration_number}}</p>
     </td>
   </tr>
-  {{/each}}
+</div>
+{{/each}}
 </div>
 
-<span></span>
+<div  class="registration-grid">
+{{#each filteredTown}}
+<div class="registration">
+  <tr>
+    <td>
+      <p>{{this.registration_number}}</p>
+    </td>
+  </tr>
+</div>
+{{/each}}
+</div>

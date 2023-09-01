@@ -1,4 +1,4 @@
-function regFunction() {
+export default function regFunction() {
     let noArr = []
    async function regNumbers(number) {
     
