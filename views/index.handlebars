@@ -1,11 +1,18 @@
 <h1>Registration Web Application</h1>
 
+<span id="tooShort">{{this.tooShort}}</span>
+<span id="tooLong">{{this.tooLong}}</span>
+
 <form action="/regnumbers" method="POST">
 <div class="input">
    <input type="text" name="reg" placeholder="enter a registration here">
    <button>Add</button>
 </div>
+
+<span id="invalidErrMsg">{{this.invalidErrMsg}}</span>
+
 </form>
+
 
 <form action="/filter" method="POST">
   <div class="radio">

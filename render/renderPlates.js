@@ -1,4 +1,4 @@
-//import regFunction from "../frontendfunction/registrionDisplay.js";
+import regFunction from "../frontendfunction/registrionDisplay.js";
 import queryFunction from "../queries/databaseQ.js";
 import pgPromise from "pg-promise";
 //import { db } from "../index.js";
@@ -9,12 +9,13 @@ const db = pgp(connectionString);
 
 const query = queryFunction(db);
 
-//const display = regFunction(db)
+const display = regFunction()
 
 export default function renderFactory() {
     async function showRegistration(req, res, next) {
         try {
             let regNumbers = await query.gettingRegistration();
+           
 
             res.render("index", {regNumbers});
         } catch (err) {
@@ -25,13 +26,17 @@ export default function renderFactory() {
         try {
             let regNo = req.body.reg
   
-            await query.storingRegistration(regNo)
-  
-            let regNumbers = await query.gettingRegistration()
-  
+            await query.storingRegistration(regNo);
+
+            let invalidErrMsg = await display.invalidMessage(regNo);
+
+            let regNumbers = await query.gettingRegistration();
+
+            let tooShort = await display.tooShortMsg(regNo);
+            let tooLong = await display.tooLongMsg(regNo);
     
 
-            res.render("index", { regNumbers: regNumbers });
+            res.render("index", { regNumbers, invalidErrMsg, tooShort, tooLong});
         } catch (err) {
             next(err);
         }

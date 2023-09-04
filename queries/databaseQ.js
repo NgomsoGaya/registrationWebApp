@@ -1,7 +1,9 @@
 export default function queryFunction(db) {
 
-    async function storingRegistration(number) {
-        if (number) {
+  async function storingRegistration(regnumber) {
+    let number = regnumber.toUpperCase();
+
+        if (number && number.length <= 10 && number.length >5) {
             if (number.startsWith("CAG")) {
               return await db.none(
                 "INSERT INTO registration_numbers (registration_number, town_id) VALUES ($1, $2)",

@@ -12,6 +12,16 @@
     </section>
 
     <script src="/frontendfunction/registrionDisplay.js"></script>
+    <script>
+        setTimeout(function() {
+            var invalidErrMsg = document.getElementById("invalidErrMsg");
+                invalidErrMsg.style.display = "none";
+            var tooShort = document.getElementById("tooShort");
+                tooShort.style.display = "none";
+            var tooLong = document.getElementById("tooLong");
+                tooLong.style.display = "none";    
+        }, 5000);
+    </script>
 
 </body>
 </html>
