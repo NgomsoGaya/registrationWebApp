@@ -11,6 +11,9 @@
     "pg": "^8.11.3",
     "pg-promise": "^11.5.4"
   },
+  "engines": {
+    "node": "18.17.1"
+  },
   "name": "registrationwebapp",
   "version": "1.0.0",
   "main": "index.js",
