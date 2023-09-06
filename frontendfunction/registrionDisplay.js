@@ -17,7 +17,7 @@ export default function regFunction() {
            return 
         } 
     }
-    // async function wrongRegNo(number) {
+    // async function regNoAlreadyEXist(number) {
     //     if (number) {
     //         if (number.includes()) {
                 

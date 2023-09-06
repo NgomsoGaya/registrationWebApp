@@ -1,24 +1,21 @@
 export default function queryFunction(db) {
 
   async function storingRegistration(regnumber) {
-
     let upperNumber = regnumber.toUpperCase().replace(/[\s-]/g, "");
-
-    
     let prefix = upperNumber.substring(0, 2);
     let numericPart = upperNumber.substring(2);
-
-    // Insert a space and a hyphen in the appropriate positions
+ // Insert a space and a hyphen in the appropriate positions
       let number =
       prefix +
       " " +
       numericPart.substring(0, 3) +
       "-" +
       numericPart.substring(3);
+    
+    let regexPartten = /^.{6,10}$/
 
     let valueExist = false;
     let town_tag = number.substring(0, 2);
-
 
     let townId = await db.any("select id from towns WHERE town_code = $1", [town_tag])
 
@@ -31,13 +28,18 @@ export default function queryFunction(db) {
         return
       }
     })
-    
-    let insertQuery =
-      "INSERT INTO registration_numbers (registration_number, town_id) VALUES ($1, $2)";
 
-    if (number && !valueExist) {
-      if (number.startsWith("CW") || number.startsWith("CA") || number.startsWith("CL") || number.startsWith("CJ")) {
-        await db.none(insertQuery, [number, townId[0].id]);
+    if (
+      regexPartten.test(number) &&
+      number.length >= 6 &&
+      number.length <= 10 &&
+      !valueExist
+    ) {
+      if (number.startsWith(town_tag)) {
+        await db.none(
+          "INSERT INTO registration_numbers (registration_number, town_id) VALUES ($1, $2)",
+          [number, townId[0].id]
+        );
       }
     }
   }
@@ -54,7 +56,7 @@ export default function queryFunction(db) {
     }
   }
 
-    async function gettingRegistration() {
+  async function gettingRegistration() {
         return await db.any(
             "SELECT * FROM registration_numbers"
         );
@@ -72,9 +74,6 @@ export default function queryFunction(db) {
       return await db.any(selectAllQuery);
     }
   }
-
-
-
     return {
       storingRegistration,
       filterRegistration,
