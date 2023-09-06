@@ -34,9 +34,10 @@ export default function renderFactory() {
 
             let tooShort = await display.tooShortMsg(regNo);
             let tooLong = await display.tooLongMsg(regNo);
+            let duplicateMsg = await query.duplicateNumber(regNo)
     
 
-            res.render("index", { regNumbers, invalidErrMsg, tooShort, tooLong});
+            res.render("index", { regNumbers, invalidErrMsg, tooShort, tooLong, duplicateMsg});
         } catch (err) {
             next(err);
         }

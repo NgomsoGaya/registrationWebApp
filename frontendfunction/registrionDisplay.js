@@ -2,8 +2,8 @@ export default function regFunction() {
     async function invalidMessage(number) {
         if (number) {
             if (
-              !number.startsWith("CAG") &&
-              !number.startsWith("cag") &&
+              !number.startsWith("CW") &&
+              !number.startsWith("cw") &&
               !number.startsWith("CA") &&
               !number.startsWith("ca") &&
               !number.startsWith("CJ") &&
@@ -17,6 +17,13 @@ export default function regFunction() {
            return 
         } 
     }
+    // async function wrongRegNo(number) {
+    //     if (number) {
+    //         if (number.includes()) {
+                
+    //         }
+    //     }
+    // }
     async function tooShortMsg(number) {
         if (number && number.length <= 5) {
             return "Registration number is too short"

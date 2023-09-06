@@ -23,6 +23,10 @@ h1{
     color: red;
 }
 
+#duplicateMsg{
+    color: red;
+}
+
 .radio{
     margin-bottom: 50px;
 }

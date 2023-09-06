@@ -49,7 +49,7 @@ app.post("/regnumbers", render.storeRegistration)
 
 app.post("/filter",  render.filterRegistration)
 
-const PORT = process.env.PORT || 3016;
+const PORT = process.env.PORT || 3022;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
