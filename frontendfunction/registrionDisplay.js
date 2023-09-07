@@ -17,13 +17,6 @@ export default function regFunction() {
            return 
         } 
     }
-    // async function regNoAlreadyEXist(number) {
-    //     if (number) {
-    //         if (number.includes()) {
-                
-    //         }
-    //     }
-    // }
     async function tooShortMsg(number) {
         if (number && number.length <= 5) {
             return "Registration number is too short"

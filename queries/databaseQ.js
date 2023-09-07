@@ -1,60 +1,88 @@
 export default function queryFunction(db) {
 
-  async function storingRegistration(regnumber) {
-    let upperNumber = regnumber.toUpperCase().replace(/[\s-]/g, "");
-    let prefix = upperNumber.substring(0, 2);
-    let numericPart = upperNumber.substring(2);
- // Insert a space and a hyphen in the appropriate positions
-      let number =
-      prefix +
-      " " +
-      numericPart.substring(0, 3) +
-      "-" +
-      numericPart.substring(3);
+async function duplicateNumber(regnumber) {
+   // const number = regnumber.toUpperCase();
+     let upperNumber = regnumber.toUpperCase().replace(/[\s-]/g, "");
+     let prefix = upperNumber.substring(0, 2);
+     let numericPart = upperNumber.substring(2);
+     // Insert a space and a hyphen in the appropriate positions
+     let number =
+       prefix +
+       " " +
+       numericPart.substring(0, 3) +
+       "-" +
+       numericPart.substring(3);
     
-    let regexPartten = /^.{6,10}$/
-
-    let valueExist = false;
-    let town_tag = number.substring(0, 2);
-
-    let townId = await db.any("select id from towns WHERE town_code = $1", [town_tag])
-
-    const getAllQuery = "SELECT * FROM registration_numbers"
-    const rows = await db.any(getAllQuery)
-
-    rows.forEach((row) => {
-      if (row.registration_number.toUpperCase() === number) {
-        valueExist = true;
-        return
-      }
-    })
-
-    if (
-      regexPartten.test(number) &&
-      number.length >= 6 &&
-      number.length <= 10 &&
-      !valueExist
-    ) {
-      if (number.startsWith(town_tag)) {
-        await db.none(
-          "INSERT INTO registration_numbers (registration_number, town_id) VALUES ($1, $2)",
-          [number, townId[0].id]
-        );
-      }
-    }
-  }
-
-  async function duplicateNumber(regnumber) {
-    const number = regnumber.toUpperCase();
     const getAllQuery = "SELECT * FROM registration_numbers";
     const rows = await db.any(getAllQuery);
 
     for (const row of rows) {
-      if (row.registration_number.toUpperCase() === number) {
+      if (row.registration_number === number) {
         return "This registration number already exists.";
+      }
+      else if (row.registration_number != number) {
+        return;
       }
     }
   }
+  async function storingRegistration(regnumber) {
+    try {
+      let upperNumber = regnumber.toUpperCase().replace(/[\s-]/g, "");
+      let prefix = upperNumber.substring(0, 2);
+      let numericPart = upperNumber.substring(2);
+      // Insert a space and a hyphen in the appropriate positions
+      let number = prefix + " " + numericPart.substring(0, 3) + "-" + numericPart.substring(3);
+    
+      let regexPartten = /^.{6,10}$/
+
+      let valueExist = false;
+      //let town_tag = number.substring(0, 2);
+
+      let townId = await db.any("select id from towns WHERE town_code = $1", [prefix])
+
+      if (!townId) {
+      
+        return;
+      }
+
+      const getAllQuery = "SELECT * FROM registration_numbers"
+      const rows = await db.any(getAllQuery)
+
+      rows.forEach((row) => {
+        if (row.registration_number.toUpperCase() === number) {
+          valueExist = true;
+          return
+        }
+      })
+      
+      if (
+        !regexPartten.test(number) ||
+        !number.startsWith(prefix) ||
+        number.length < 6 ||
+        number.length > 10
+      ) {
+        return "Please enter avalid registration.";
+      }
+      else if (
+        regexPartten.test(number) &&
+        number.length >= 6 &&
+        number.length <= 10 &&
+        !valueExist
+      ) {
+        if (number.startsWith(prefix)) {
+          await db.none(
+            "INSERT INTO registration_numbers (registration_number, town_id) VALUES ($1, $2)",
+            [number, townId[0].id]
+          );
+        }
+      }
+    
+    } catch (error) {
+     console.error("Error in storingRegistration:", error);
+  }
+  }
+
+  
 
   async function gettingRegistration() {
         return await db.any(
@@ -74,6 +102,7 @@ export default function queryFunction(db) {
       return await db.any(selectAllQuery);
     }
   }
+  
     return {
       storingRegistration,
       filterRegistration,
