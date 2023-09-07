@@ -32,10 +32,15 @@ export default function regFunction() {
         }
     }
 
+    async function clearMsg() {
+        return "You have cleared the registrations."
+    }
+
     return {
         invalidMessage,
         tooShortMsg,
-        tooLongMsg
+        tooLongMsg,
+        clearMsg
     }
 }
 

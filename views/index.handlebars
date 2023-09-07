@@ -2,7 +2,7 @@
 
 <span id="tooShort">{{this.tooShort}}</span>
 <span id="tooLong">{{this.tooLong}}</span>
-<span id="duplicateMsg">{{this.duplicateMsg}}</span>
+<span id="message">{{this.message}}</span>
 
 <form action="/regnumbers" method="POST">
 <div class="input">
@@ -53,3 +53,9 @@
 </div>
 {{/each}}
 </div>
+
+<form action="/clearing" method="POST">
+      <button type="submit" class="erase">Clear</button>
+</form>
+
+<p>{{this.clrMsg}}</p>

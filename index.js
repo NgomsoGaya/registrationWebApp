@@ -45,9 +45,11 @@ const render = renderFactory()
 
 app.get("/", render.showRegistration);
 
-app.post("/regnumbers", render.storeRegistration)
+app.post("/regnumbers", render.storeRegistration);
 
-app.post("/filter",  render.filterRegistration)
+app.post("/filter", render.filterRegistration);
+
+app.get("/clearing", render.clearRegistration);
 
 const PORT = process.env.PORT || 3037;
 app.listen(PORT, () => {

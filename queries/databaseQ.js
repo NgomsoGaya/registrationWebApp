@@ -26,10 +26,12 @@ export default function queryFunction(db) {
       rows.forEach((row) => {
         if (row.registration_number.toUpperCase() === number) {
           valueExist = true;
-          return
+          return;
         }
       })
-      
+      if (valueExist) {
+        return "This registration number already exist.";
+      }
       if (
         !regexPartten.test(number) ||
         !number.startsWith(prefix) ||
@@ -57,35 +59,6 @@ export default function queryFunction(db) {
   }
   }
 
-  async function duplicateNumber(regnumber) {
-    // const number = regnumber.toUpperCase();
-    let upperNumber = regnumber.toUpperCase().replace(/[\s-]/g, "");
-    let prefix = upperNumber.substring(0, 2);
-    let numericPart = upperNumber.substring(2);
-    // Insert a space and a hyphen in the appropriate positions
-    let number =
-      prefix +
-      " " +
-      numericPart.substring(0, 3) +
-      "-" +
-      numericPart.substring(3);
-
-    const getAllQuery = "SELECT * FROM registration_numbers";
-    const rows = await db.any(getAllQuery);
-
-    let isDuplicate = false;
-
-    for (const row of rows) {
-      if (row.registration_number.toUpperCase() === number) {
-        isDuplicate = true;
-        break;
-      } 
-    } if (isDuplicate) {
-      return "This registration number already exist.";
-    }
-  }
-  
-
   async function gettingRegistration() {
         return await db.any(
             "SELECT * FROM registration_numbers"
@@ -105,10 +78,13 @@ export default function queryFunction(db) {
     }
   }
   
+  async function clearRegistration() {
+    return await db.none("DELETE FROM registration_numbers")
+  }
     return {
       storingRegistration,
       filterRegistration,
       gettingRegistration,
-      duplicateNumber
+      clearRegistration
     };
 }

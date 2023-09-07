@@ -1,15 +1,12 @@
 import regFunction from "../frontendfunction/registrionDisplay.js";
 import queryFunction from "../queries/databaseQ.js";
 import pgPromise from "pg-promise";
-//import { db } from "../index.js";
-
 const connectionString = process.env.connection_string;
 const pgp = pgPromise();
 const db = pgp(connectionString);
 
 const query = queryFunction(db);
-
-const display = regFunction()
+const display = regFunction();
 
 export default function renderFactory() {
     async function showRegistration(req, res, next) {
@@ -26,18 +23,25 @@ export default function renderFactory() {
         try {
             let regNo = req.body.reg
   
-            await query.storingRegistration(regNo);
+            let message = await query.storingRegistration(regNo);
 
             let invalidErrMsg = await display.invalidMessage(regNo);
 
             let regNumbers = await query.gettingRegistration();
 
             let tooShort = await display.tooShortMsg(regNo);
+
             let tooLong = await display.tooLongMsg(regNo);
-            let duplicateMsg = await query.duplicateNumber(regNo);
+            //let duplicateMsg = await query.duplicateNumber(regNo);
     
 
-            res.render("index", { regNumbers, invalidErrMsg, tooShort, tooLong, duplicateMsg});
+            res.render("index", {
+              regNumbers,
+              invalidErrMsg,
+              tooShort,
+              tooLong,
+              message,
+            });
         } catch (err) {
             next(err);
         }
@@ -53,9 +57,22 @@ export default function renderFactory() {
             next(err)
         }
     }
+
+    async function clearRegistration(req, res, next) {
+        try {
+          await query.clearRegistration();
+
+          const clrMsg = await display.clearMsg();
+
+          res.render("index", { clrMsg });
+        } catch (err) {
+          next(err);
+        }
+    }
     return {
       showRegistration,
       storeRegistration,
       filterRegistration,
+      clearRegistration
     };
 }
