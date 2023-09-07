@@ -1,30 +1,5 @@
 export default function queryFunction(db) {
 
-async function duplicateNumber(regnumber) {
-   // const number = regnumber.toUpperCase();
-     let upperNumber = regnumber.toUpperCase().replace(/[\s-]/g, "");
-     let prefix = upperNumber.substring(0, 2);
-     let numericPart = upperNumber.substring(2);
-     // Insert a space and a hyphen in the appropriate positions
-     let number =
-       prefix +
-       " " +
-       numericPart.substring(0, 3) +
-       "-" +
-       numericPart.substring(3);
-    
-    const getAllQuery = "SELECT * FROM registration_numbers";
-    const rows = await db.any(getAllQuery);
-
-    for (const row of rows) {
-      if (row.registration_number === number) {
-        return "This registration number already exists.";
-      }
-      else if (row.registration_number != number) {
-        return;
-      }
-    }
-  }
   async function storingRegistration(regnumber) {
     try {
       let upperNumber = regnumber.toUpperCase().replace(/[\s-]/g, "");
@@ -82,6 +57,33 @@ async function duplicateNumber(regnumber) {
   }
   }
 
+  async function duplicateNumber(regnumber) {
+    // const number = regnumber.toUpperCase();
+    let upperNumber = regnumber.toUpperCase().replace(/[\s-]/g, "");
+    let prefix = upperNumber.substring(0, 2);
+    let numericPart = upperNumber.substring(2);
+    // Insert a space and a hyphen in the appropriate positions
+    let number =
+      prefix +
+      " " +
+      numericPart.substring(0, 3) +
+      "-" +
+      numericPart.substring(3);
+
+    const getAllQuery = "SELECT * FROM registration_numbers";
+    const rows = await db.any(getAllQuery);
+
+    let isDuplicate = false;
+
+    for (const row of rows) {
+      if (row.registration_number.toUpperCase() === number) {
+        isDuplicate = true;
+        break;
+      } 
+    } if (isDuplicate) {
+      return "This registration number already exist.";
+    }
+  }
   
 
   async function gettingRegistration() {
