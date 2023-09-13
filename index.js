@@ -49,7 +49,7 @@ app.post("/regnumbers", render.storeRegistration);
 
 app.post("/filter", render.filterRegistration);
 
-app.get("/clearing", render.clearRegistration);
+app.post("/clearing", render.clearRegistration);
 
 const PORT = process.env.PORT || 3037;
 app.listen(PORT, () => {

@@ -35,8 +35,8 @@ export default function queryFunction(db) {
       if (
         !regexPartten.test(number) ||
         !number.startsWith(prefix) ||
-        number.length < 6 ||
-        number.length > 10
+         number.length < 6 ||
+         number.length > 10
       ) {
         return "Please enter avalid registration.";
       }
@@ -51,6 +51,9 @@ export default function queryFunction(db) {
             "INSERT INTO registration_numbers (registration_number, town_id) VALUES ($1, $2)",
             [number, townId[0].id]
           );
+        }
+        else {
+          return;
         }
       }
     

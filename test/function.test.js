@@ -67,4 +67,63 @@ describe("Testing my registration Web App", function () {
           console.log(err);
         }
     })
+    it("Should be able to clear your registration numbers", async function () {
+      try {
+        let query = queryFunction(db);
+        let frontend = regFunction()
+
+        await query.clearRegistration()
+        let clearMsg = await frontend.clearMsg()
+
+        assert.deepEqual("You have cleared the registrations.", clearMsg);
+      } catch (err) {
+        console.log(err);
+      }
+    });
+    it("Should display an errror message for an invalid registartion number", async function () {
+      try {
+        //let query = queryFunction(db);
+        let frontend = regFunction();
+
+       // await query.storingRegistration('LO123456');
+
+        let invalidErr = await frontend.invalidMessage("LO123456");
+    
+
+        assert.deepEqual(
+          "Please enter a registration from the towns below.",
+          invalidErr
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    });
+  it("Should display an errror message for a short registartion number", async function () {
+    try {
+      let query = queryFunction(db);
+      let frontend = regFunction();
+
+      await query.storingRegistration('123');
+
+      let shortErr = await frontend.tooShortMsg(123);
+
+      assert.deepEqual("Registration number is too short", shortErr);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+  it("Should display an errror message for a long registartion number", async function () {
+    try {
+      let query = queryFunction(db);
+      let frontend = regFunction();
+
+      await query.storingRegistration('LO123456789101112');
+
+      let longErr = await frontend.tooLongMsg(1234567891011);
+
+      assert.deepEqual("Registration number is too long", longErr);
+    } catch (err) {
+      console.log(err);
+    }
+  });
 })
