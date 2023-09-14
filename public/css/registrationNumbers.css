@@ -1,23 +1,28 @@
 body {
-    background-image: linear-gradient(to right, #1982c4, #19c419);
+    background-color: azure;
 }
+
 
 .section{
     text-align: center;
     border: 2px solid black;
     border-radius: 5px;
     padding: 10px;
-    margin: 40px;
+    /* padding-left: 60px; */
+    margin-left: 550px;
+    margin-right: 550px;
     margin-top: 150px;
-    background-color: #7bb51845;
+    background-color: #7bb51860;
 }
 h1{
     margin-bottom: 50px;
     font-family: monospace;
     font-size: 40px;
 }
-.input{
+input{
     margin-bottom: 60px;
+    min-height: 35px;
+    /* vertical-align: middle */
 }
 
 #invalidErrMsg{
@@ -30,6 +35,7 @@ h1{
 
 .radio{
     margin-bottom: 50px;
+    /* vertical-align: middle; */
 }
 
 .registration{
@@ -54,4 +60,26 @@ h1{
 }
 #tooLong {
     color: red;
+}
+
+.erase {
+  border: none;
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.erase:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.radioFont{
+    font-size: 30px;
+}
+input[type="radio"]{
+    vertical-align: top;
 }

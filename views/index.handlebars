@@ -6,30 +6,28 @@
 
 <form action="/regnumbers" method="POST">
 <div class="input">
-   <input type="text" name="reg" placeholder="enter a registration here">
-   <button>Add</button>
+   <input type="text" name="reg" placeholder="enter a registration here" required>
+   <button class="erase">Add</button>
 </div>
 
 <span id="invalidErrMsg">{{this.invalidErrMsg}}</span>
 
 </form>
 
-
 <form action="/filter" method="POST">
   <div class="radio">
-   <input type="radio" name="town" value="CA">
-   <span>Cape Town</span>
-   <input type="radio" name="town" value="CJ">
-   <span>Paarl</span>
-   <input type="radio" name="town" value="CW">
-   <span>Worcester</span>
-   <input type="radio" name="town" value="CL">
-   <span>Stellenbosch</span>
-   <button>Show</button> 
+   <input type="radio" name="town" value="CA" class="radioFont">
+   <span class="radioFont">Cape Town</span>
+   <input type="radio" name="town" value="CJ" class="radioFont">
+   <span class="radioFont">Paarl</span>
+   <input type="radio" name="town" value="CW" class="radioFont">
+   <span class="radioFont">Worcester</span>
+   <input type="radio" name="town" value="CL" class="radioFont">
+   <span class="radioFont">Stellenbosch</span>
+   <button class="erase">Show</button> 
 </div>
 </form>
 
- 
 <div  class="registration-grid">
 {{#each regNumbers}}
 <div class="registration">
@@ -41,7 +39,6 @@
 </div>
 {{/each}}
 </div>
-
 <div  class="registration-grid">
 {{#each filteredTown}}
 <div class="registration">
@@ -54,7 +51,7 @@
 {{/each}}
 </div>
 
-<form action="/clearing" method="POST">
+<form action="/clearing" method="POST" >
       <button type="submit" class="erase">Clear</button>
 </form>
 

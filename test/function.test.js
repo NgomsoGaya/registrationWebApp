@@ -126,4 +126,18 @@ describe("Testing my registration Web App", function () {
       console.log(err);
     }
   });
+  it("Should be able to filter registration by town.", async function () {
+    try {
+      let query = queryFunction(db);
+
+      await query.storingRegistration("CA123456");
+      await query.storingRegistration("CL123456");
+      let filteredREg = await query.filterRegistration("CA");
+
+
+      assert.deepEqual("CA 123-456", filteredREg[0].registration_number);
+    } catch (err) {
+      console.log(err);
+    }
+  });
 })

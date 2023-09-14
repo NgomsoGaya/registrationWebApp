@@ -21,7 +21,7 @@ export default function queryFunction(db) {
       }
 
       const getAllQuery = "SELECT * FROM registration_numbers"
-      const rows = await db.any(getAllQuery)
+      const rows = await db.many(getAllQuery)
 
       rows.forEach((row) => {
         if (row.registration_number.toUpperCase() === number) {
