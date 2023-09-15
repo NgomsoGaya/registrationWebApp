@@ -1,6 +1,7 @@
 import regFunction from "../frontendfunction/registrionDisplay.js";
 import queryFunction from "../queries/databaseQ.js";
 import pgPromise from "pg-promise";
+import "dotenv/config";
 const connectionString = process.env.DATABASE_URL;
 const pgp = pgPromise();
 const db = pgp(connectionString);
