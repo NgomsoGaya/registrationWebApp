@@ -1,7 +1,7 @@
 import regFunction from "../frontendfunction/registrionDisplay.js";
 import queryFunction from "../queries/databaseQ.js";
 import pgPromise from "pg-promise";
-const connectionString = process.env.connection_string;
+const connectionString = process.env.DATABASE_URL;
 const pgp = pgPromise();
 const db = pgp(connectionString);
 
