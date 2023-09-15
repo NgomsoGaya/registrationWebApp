@@ -19,16 +19,13 @@ export default function regFunction() {
     }
     async function tooShortMsg(number) {
         if (number && number.length <= 5) {
-            return "Registration number is too short"
-        } else {
-            return
+            let message = "Registration number is too short.";
+            return message
         }
     }
     async function tooLongMsg(number) {
         if (number && number.length >= 10) {
-            return "Registration number is too long"
-        } else {
-            return
+            return "Registration number is too long."
         }
     }
 
@@ -36,11 +33,19 @@ export default function regFunction() {
         return "You have cleared the registrations."
     }
 
+    async function specialCharNotAllowed(number) {
+        const specialCharPattern = /[^0-9]/;
+        if (specialCharPattern.test(number)) {
+             return "Special characters are not allowed."
+        }
+    }
+
     return {
         invalidMessage,
         tooShortMsg,
         tooLongMsg,
-        clearMsg
+        clearMsg,
+        specialCharNotAllowed
     }
 }
 

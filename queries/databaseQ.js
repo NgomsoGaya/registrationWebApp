@@ -9,6 +9,7 @@ export default function queryFunction(db) {
       let number = prefix + " " + numericPart.substring(0, 3) + "-" + numericPart.substring(3);
     
       let regexPartten = /^.{6,10}$/
+      let specialCharPattern = /[^0-9]/;
 
       let valueExist = false;
       //let town_tag = number.substring(0, 2);
@@ -32,27 +33,19 @@ export default function queryFunction(db) {
       if (valueExist) {
         return "This registration number already exist.";
       }
-      if (
-        !regexPartten.test(number) ||
-        !number.startsWith(prefix) ||
-         number.length < 6 ||
-         number.length > 10
-      ) {
-        return "Please enter avalid registration.";
-      }
       else if (
         regexPartten.test(number) &&
-        number.length >= 6 &&
+        number.length > 7 &&
         number.length <= 10 &&
-        !valueExist
+        !valueExist &&
+        !specialCharPattern.test(number)
       ) {
         if (number.startsWith(prefix)) {
           await db.none(
             "INSERT INTO registration_numbers (registration_number, town_id) VALUES ($1, $2)",
             [number, townId[0].id]
           );
-        }
-        else {
+        } else {
           return;
         }
       }

@@ -33,6 +33,8 @@ export default function renderFactory() {
             let tooShort = await display.tooShortMsg(regNo);
 
             let tooLong = await display.tooLongMsg(regNo);
+
+            let specCharMsg = await display.specialCharNotAllowed(regNo);
             //let duplicateMsg = await query.duplicateNumber(regNo);
     
 
@@ -42,6 +44,7 @@ export default function renderFactory() {
               tooShort,
               tooLong,
               message,
+              specCharMsg,
             });
         } catch (err) {
             next(err);
@@ -70,10 +73,13 @@ export default function renderFactory() {
           next(err);
         }
     }
+
+    
     return {
       showRegistration,
       storeRegistration,
       filterRegistration,
-      clearRegistration
+      clearRegistration,
+     // noSpecialChar,
     };
 }

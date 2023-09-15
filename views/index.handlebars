@@ -3,10 +3,13 @@
 <span id="tooShort">{{this.tooShort}}</span>
 <span id="tooLong">{{this.tooLong}}</span>
 <span id="message">{{this.message}}</span>
+<span id="specCharMsg">{{this.specCharMsg}}</span>
+
 
 <form action="/regnumbers" method="POST">
 <div class="input">
    <input type="text" name="reg" placeholder="enter a registration here" required>
+    <span class="spacing"></span>
    <button class="erase">Add</button>
 </div>
 
@@ -18,12 +21,16 @@
   <div class="radio">
    <input type="radio" name="town" value="CA" class="radioFont">
    <span class="radioFont">Cape Town</span>
+    <span class="spacing"></span>
    <input type="radio" name="town" value="CJ" class="radioFont">
    <span class="radioFont">Paarl</span>
+    <span class="spacing"></span>
    <input type="radio" name="town" value="CW" class="radioFont">
    <span class="radioFont">Worcester</span>
+    <span class="spacing"></span>
    <input type="radio" name="town" value="CL" class="radioFont">
    <span class="radioFont">Stellenbosch</span>
+    <span class="spacing"></span>
    <button class="erase">Show</button> 
 </div>
 </form>

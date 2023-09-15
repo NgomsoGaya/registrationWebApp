@@ -9,8 +9,8 @@ body {
     border-radius: 5px;
     padding: 10px;
     /* padding-left: 60px; */
-    margin-left: 550px;
-    margin-right: 550px;
+    margin-left: 400px;
+    margin-right: 400px;
     margin-top: 150px;
     background-color: #7bb51860;
 }
@@ -31,6 +31,10 @@ input{
 
 #message{
     color: red;
+}
+
+#clearmsg{
+    color: orange;
 }
 
 .radio{
@@ -62,14 +66,19 @@ input{
     color: red;
 }
 
+#specCharMsg{
+    color: red;
+}
+
 .erase {
   border: none;
   background-color: #04AA6D;
   color: white;
-  padding: 14px 28px;
-  font-size: 16px;
+  padding: 12px 24px;
+  font-size: 14px;
   cursor: pointer;
   text-align: center;
+  border-radius: 4px;
 }
 
 .erase:hover {
@@ -82,4 +91,7 @@ input{
 }
 input[type="radio"]{
     vertical-align: top;
+}
+.spacing {
+   margin-right: 30px;
 }
