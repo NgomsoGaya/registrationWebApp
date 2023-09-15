@@ -29,3 +29,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+      env: 
+        DATABASE_URL: postgres://cohndpkh:KqmdbsuaRXK12Qq4QK8mCjEcwS8sFJX2@surus.db.elephantsql.com/cohndpkh
