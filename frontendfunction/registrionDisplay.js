@@ -35,7 +35,7 @@ export default function regFunction() {
 
     async function specialCharNotAllowed(number) {
         const specialCharPattern = /[^0-9]/;
-        if (specialCharPattern.test(number)) {
+        if (!specialCharPattern.test(number)) {
              return "Special characters are not allowed."
         }
     }

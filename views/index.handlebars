@@ -19,18 +19,22 @@
 
 <form action="/filter" method="POST">
   <div class="radio">
-   <input type="radio" name="town" value="CA" class="radioFont">
-   <span class="radioFont">Cape Town</span>
+   <input id="cpt" type="radio" name="town" value="CA" class="radioFont">
+   <label for="cpt" class="radioFont">Cape Town</label>
     <span class="spacing"></span>
-   <input type="radio" name="town" value="CJ" class="radioFont">
-   <span class="radioFont">Paarl</span>
+
+   <input id="p" type="radio" name="town" value="CJ" class="radioFont">
+   <label for="p" class="radioFont">Paarl</label>
     <span class="spacing"></span>
-   <input type="radio" name="town" value="CW" class="radioFont">
-   <span class="radioFont">Worcester</span>
+
+   <input id="w" type="radio" name="town" value="CW" class="radioFont">
+   <label for="w" class="radioFont">Worcester</label>
     <span class="spacing"></span>
-   <input type="radio" name="town" value="CL" class="radioFont">
-   <span class="radioFont">Stellenbosch</span>
+
+   <input id="s" type="radio" name="town" value="CL" class="radioFont">
+   <label for="s" class="radioFont">Stellenbosch</label>
     <span class="spacing"></span>
+
    <button class="erase">Show</button> 
 </div>
 </form>
@@ -46,8 +50,13 @@
 </div>
 {{/each}}
 </div>
+
+
+<p id="noTowns">{{feedback}}</p>
+
 <div  class="registration-grid">
-{{#each filteredTown}}
+
+{{#each filteredTown.regNumbers}}
 <div class="registration">
   <tr>
     <td>

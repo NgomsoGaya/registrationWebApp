@@ -35,6 +35,7 @@ export default function renderFactory() {
             let tooLong = await display.tooLongMsg(regNo);
 
             let specCharMsg = await display.specialCharNotAllowed(regNo);
+
             //let duplicateMsg = await query.duplicateNumber(regNo);
     
 
@@ -55,8 +56,9 @@ export default function renderFactory() {
             let town = req.body.town
   
             let filteredTown = await query.filterRegistration(town)
-
-            res.render("index", { filteredTown: filteredTown });
+            let feedback = filteredTown.msg
+            console.log(filteredTown);
+            res.render("index", { feedback, filteredTown });
         } catch (err) {
             next(err)
         }
@@ -66,7 +68,7 @@ export default function renderFactory() {
         try {
           await query.clearRegistration();
 
-          const clrMsg = await display.clearMsg();
+          const clrMsg = await query.clearRegistration();
 
           res.render("index", { clrMsg });
         } catch (err) {

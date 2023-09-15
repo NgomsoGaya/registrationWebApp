@@ -95,3 +95,8 @@ input[type="radio"]{
 .spacing {
    margin-right: 30px;
 }
+#noTowns{
+    color: orange;
+    font-size: large;
+    font-family: cursive;
+}

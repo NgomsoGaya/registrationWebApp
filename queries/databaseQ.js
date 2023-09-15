@@ -38,7 +38,7 @@ export default function queryFunction(db) {
         number.length > 7 &&
         number.length <= 10 &&
         !valueExist &&
-        !specialCharPattern.test(number)
+        specialCharPattern.test(number)
       ) {
         if (number.startsWith(prefix)) {
           await db.none(
@@ -62,11 +62,27 @@ export default function queryFunction(db) {
     }
 
   async function filterRegistration(town) {
+
+    let obj = {
+      msg:'',
+      regNumbers:[]
+    };
     if (town) {
       let selectQuery =
         "SELECT registration_number FROM registration_numbers WHERE town_id IN (SELECT id FROM towns WHERE town_code = $1)";
-      return await db.any(selectQuery, [town]);
-    } else {
+      const regNumbers = await db.any(selectQuery, [town]);
+
+      if (regNumbers.length === 0) {
+          obj.msg = "There are no registration numbers for this town.";
+      } else {
+        obj.regNumbers = regNumbers ;
+      }
+
+    return obj
+
+    }
+    
+    else {
       // If 'town' is not provided, fetch all registration numbers
       let selectAllQuery =
         "SELECT registration_number FROM registration_numbers";
@@ -75,7 +91,14 @@ export default function queryFunction(db) {
   }
   
   async function clearRegistration() {
-    return await db.none("DELETE FROM registration_numbers")
+    const countQuery = "SELECT COUNT(*) FROM registration_numbers"
+    const regCount = await db.one(countQuery);
+
+    if (regCount.count === 0) {
+      return "Your database is empty."
+    }
+    await db.none("DELETE FROM registration_numbers")
+    return "Registration numbers have been cleared."
   }
     return {
       storingRegistration,
