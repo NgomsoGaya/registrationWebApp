@@ -18,13 +18,13 @@ export default function regFunction() {
         } 
     }
     async function tooShortMsg(number) {
-        if (number && number.length <= 5) {
+        if (number.length <= 5) {
             let message = "Registration number is too short.";
             return message
         }
     }
     async function tooLongMsg(number) {
-        if (number && number.length >= 10) {
+        if (number.length > 10) {
             return "Registration number is too long."
         }
     }

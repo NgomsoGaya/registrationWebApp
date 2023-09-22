@@ -30,6 +30,7 @@ export default function queryFunction(db) {
           return;
         }
       })
+      
       if (valueExist) {
         return "This registration number already exist.";
       }
