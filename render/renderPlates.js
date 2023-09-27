@@ -62,6 +62,7 @@ export default function renderFactory() {
         } catch (err) {
             next(err)
         }
+        
     }
 
     async function clearRegistration(req, res, next) {

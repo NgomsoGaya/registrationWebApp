@@ -9,7 +9,7 @@ export default function queryFunction(db) {
       let number = prefix + " " + numericPart.substring(0, 3) + "-" + numericPart.substring(3);
     
       let regexPartten = /^.{6,10}$/
-      let specialCharPattern = /[^0-9]/;
+      let specialCharPattern = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
 
       let valueExist = false;
       //let town_tag = number.substring(0, 2);
@@ -39,16 +39,16 @@ export default function queryFunction(db) {
         number.length > 7 &&
         number.length <= 10 &&
         !valueExist &&
-        specialCharPattern.test(number)
+        !specialCharPattern.test(number)
       ) {
-        if (number.startsWith(prefix)) {
+        //if (number.startsWith(prefix)) {
           await db.none(
             "INSERT INTO registration_numbers (registration_number, town_id) VALUES ($1, $2)",
             [number, townId[0].id]
           );
-        } else {
-          return;
-        }
+        // } else {
+        //   return;
+        // }
       }
     
     } catch (error) {

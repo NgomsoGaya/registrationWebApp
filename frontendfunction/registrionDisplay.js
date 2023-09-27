@@ -13,16 +13,16 @@ export default function regFunction() {
             ) {
               return "Please enter a registration from the towns below.";
             }
-        } else {
-           return 
-        } 
+        }
     }
+
     async function tooShortMsg(number) {
         if (number.length <= 5) {
             let message = "Registration number is too short.";
             return message
         }
     }
+
     async function tooLongMsg(number) {
         if (number.length > 10) {
             return "Registration number is too long."
@@ -34,8 +34,8 @@ export default function regFunction() {
     }
 
     async function specialCharNotAllowed(number) {
-        const specialCharPattern = /[^0-9]/;
-        if (!specialCharPattern.test(number)) {
+        const specialCharPattern = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\|]/;
+        if (specialCharPattern.test(number)) {
              return "Special characters are not allowed."
         }
     }
