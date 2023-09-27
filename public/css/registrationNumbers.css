@@ -9,9 +9,9 @@ body {
     border-radius: 5px;
     padding: 10px;
     /* padding-left: 60px; */
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-top: 150px;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 10%;
     background-color: #7bb51860;
 }
 h1{
@@ -110,6 +110,24 @@ input[type="radio"]{
   font-family: Arial, sans-serif; /* Font family */
   color: #333; /* Text color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a slight lift */
-  width: 900px; /* Width of the box */
   margin: 0 auto; /* Center the box horizontally */
+}
+
+.bold {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1800px) {
+  /* CSS rules for screens with a maximum width of 768 pixels */
+  .instruction{
+ background-color: #f0f0f0; /* Background color */
+  border: 1px solid #ccc; /* Border style */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  font-family: Arial, sans-serif; /* Font family */
+  color: #333; /* Text color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a slight lift */
+  margin: 0 auto; /* Center the box horizontally */
+}
+
 }
