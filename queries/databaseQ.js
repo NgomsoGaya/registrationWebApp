@@ -95,11 +95,13 @@ export default function queryFunction(db) {
     const countQuery = "SELECT COUNT(*) FROM registration_numbers"
     const regCount = await db.one(countQuery);
 
-    if (regCount.count === 0) {
-      return "Your database is empty."
+    if (regCount.count !== 0) {
+      await db.none("DELETE FROM registration_numbers");
+      return "Registration numbers have been cleared.";
+    } else if (regCount.count == 0) {
+      return "Your database is empty.";
     }
-    await db.none("DELETE FROM registration_numbers")
-    return "Registration numbers have been cleared."
+    
   }
     return {
       storingRegistration,
