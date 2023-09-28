@@ -57,8 +57,9 @@ export default function renderFactory() {
   
             let filteredTown = await query.filterRegistration(town)
             let feedback = filteredTown.msg
-            console.log(filteredTown);
-            res.render("index", { feedback, filteredTown });
+            let allTown = await query.allTowns()
+            //console.log(filteredTown);
+            res.render("index", { feedback, filteredTown , allTown});
         } catch (err) {
             next(err)
         }

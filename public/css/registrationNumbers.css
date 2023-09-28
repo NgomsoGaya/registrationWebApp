@@ -38,10 +38,10 @@ input{
     color: orange;
 }
 
-.radio{
-    margin-bottom: 50px;
+/* .radio{ */
+    /* margin-bottom: 10px; */
     /* vertical-align: middle; */
-}
+/* } */
 
 .registration{
     border: 2px solid black;
@@ -115,6 +115,17 @@ input[type="radio"]{
 
 .bold {
     font-weight: bold;
+}
+
+.button-container {
+        display: inline-flexbox;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+.all{
+    margin-bottom: 20px;
+    margin-top: 10px;
 }
 
 @media screen and (max-width: 1800px) {

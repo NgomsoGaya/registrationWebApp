@@ -1,7 +1,7 @@
 <div class="instruction">
   In this widget you need to <span class="bold">insert</span>  a registration number into the input box, when you  <span class="bold">click add</span> it will be added to the list of registration numbers if it is from a relevent town.
   When you want to <span class="bold">view</span> the registration numbers from a <span class="bold">specific town</span> you can select a radio button for that town and <span class="bold">click the show</span>  button.
-  <span class="bold">Click show</span> without selecting any radio button to view registration numbers from <span class="bold">all towns</span>.
+  <span class="bold">Click Show All</span> without selecting any radio button to view registration numbers from <span class="bold">all towns</span>.
 </div>
 
 <div>
@@ -40,11 +40,24 @@
 
    <input id="s" type="radio" name="town" value="CL" class="radioFont">
    <label for="s" class="radioFont">Stellenbosch(CL)</label>
-    <span class="spacing"></span>
+  <span class="spacing"></span>
 
-   <button class="erase">Show</button> 
+  <div class="button-container">
+      <button type="submit" class="erase">Show</button>
+  </div>
+   
 </div>
 </form>
+
+<form action="/">
+
+<div class="button-container all">
+<button type="submit" class="erase">Show All</button>
+</div>
+
+</form>
+
+
 
 <div  class="registration-grid">
 {{#each regNumbers}}

@@ -67,7 +67,8 @@ export default function queryFunction(db) {
     let obj = {
       msg:'',
       regNumbers:[]
-    };
+    }
+
     if (town) {
       let selectQuery =
         "SELECT registration_number FROM registration_numbers WHERE town_id IN (SELECT id FROM towns WHERE town_code = $1)";
@@ -89,8 +90,14 @@ export default function queryFunction(db) {
         "SELECT registration_number FROM registration_numbers";
       return await db.any(selectAllQuery);
     }
+
   }
   
+  async function allTowns() {
+    let selectAllQuery = "SELECT registration_number FROM registration_numbers";
+    return await db.any(selectAllQuery);
+  }
+
   async function clearRegistration() {
     const countQuery = "SELECT COUNT(*) FROM registration_numbers"
     const regCount = await db.one(countQuery);
@@ -107,6 +114,7 @@ export default function queryFunction(db) {
       storingRegistration,
       filterRegistration,
       gettingRegistration,
-      clearRegistration
+      clearRegistration,
+      allTowns,
     };
 }
