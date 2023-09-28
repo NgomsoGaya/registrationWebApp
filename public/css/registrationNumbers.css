@@ -1,24 +1,33 @@
 body {
-    background-color: azure;
+    background-color: #7bb51860;
+   
 }
 
 
 .section{
+    /* margin: 0%;
+    padding: 0%; */
     text-align: center;
     border: 2px solid black;
     border-radius: 5px;
     padding: 10px;
     /* padding-left: 60px; */
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 10%;
-    background-color: #7bb51860;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    background-image: url('jeep.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    /* min-height: 100vh; */
+    
 }
 h1{
     margin-bottom: 50px;
     font-family: monospace;
     font-size: 40px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow */
+  color: azure;
 }
 input{
     margin-bottom: 60px;
@@ -89,6 +98,7 @@ input{
 
 .radioFont{
     font-size: 30px;
+    color: azure;
 }
 input[type="radio"]{
     vertical-align: top;
