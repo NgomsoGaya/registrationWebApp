@@ -96,6 +96,11 @@ input{
   color: black;
 }
 
+.show{
+    display:flexbox;
+    
+}
+
 .radioFont{
     font-size: 30px;
     color: azure;
